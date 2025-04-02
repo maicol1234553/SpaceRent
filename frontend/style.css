@@ -9,7 +9,7 @@
 }
 
 body{
-    background-color: #080202;
+    background-color: black;
     font-family: 'Poppins', sans-serif  ;
 }
 
@@ -165,8 +165,9 @@ color: #db241b;
     width: 50%;
 }
 .slider-img img{
-    margin: right 225px; 
-    width: 550px;
+    border-radius: 10px;
+    margin-left: 10px; 
+    width: 90%;
 }
 .Products{
     background-color: #0d0d0d;
