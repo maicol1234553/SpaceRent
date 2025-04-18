@@ -1,7 +1,7 @@
-//inicio sesion 
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("iniciosesionForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // Evita que el formulario recargue la página
+// inicio sesion 
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("iniciosesionForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Evita recargar la página
 
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
@@ -12,13 +12,22 @@ document.addEventListener("DOMContentLoaded", function() {
             body: JSON.stringify({ email, password })
         })
         .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                window.location.href = "spacerent.html"; // Redirige si es exitoso
+        .then(result => {
+            if (result.success) {
+                // Guardar datos en localStorage
+                localStorage.setItem("rol", result.rol);
+                localStorage.setItem("nombre", result.nombre);
+                localStorage.setItem("email", email);
+
+                window.location.href = "spacerent.html"; // Redirige a Space Rent
             } else {
-                alert("Correo o contraseña incorrectos"); // Muestra error
+                alert("Correo o contraseña incorrectos");
             }
         })
-        .catch(error => console.error("Error:", error));
+        .catch(error => {
+            console.error("Error:", error);
+            alert("Hubo un error al intentar iniciar sesión.");
+        });
     });
 });
+

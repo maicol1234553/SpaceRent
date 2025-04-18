@@ -1,11 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Space Rent</title>
 </head>
 <body>
-    
+
+    <!-- Aquí agregamos contenedor para mostrar nombre y rol -->
+    <div id="info-usuario" style="margin-bottom: 20px;">
+        <h2 id="nombre-usuario">Hola, Usuario</h2>
+        <p>Tu rol es: <span id="rol-usuario">desconocido</span></p>
+    </div>
+
+    <!-- Sección para COMPRADOR -->
+    <div id="comprador-section" style="display: none;">
+       
+        <h3>Propiedades disponibles</h3>
+        <div id="lista-propiedades"></div>
+       
+    </div>
+
+    <!-- Sección para VENDEDOR -->
+    <div id="vendedor-section" style="display: none;">
+        <h3>Sube tu propiedad</h3>
+        <form id="form-propiedad">
+            <input type="text" id="titulo" placeholder="Título" required>
+            <textarea id="descripcion" placeholder="Descripción"></textarea>
+            <input type="text" id="imagen" placeholder="URL de la imagen">
+            <button type="submit">Subir propiedad</button>
+        </form>
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const rol = localStorage.getItem("rol") || "desconocido";
+        const nombre = localStorage.getItem("nombre") || "Usuario";
+        const email = localStorage.getItem("email") || "";
+
+        // Mostrar datos del usuario en pantalla
+        document.getElementById("nombre-usuario").textContent = `Hola, ${nombre}`;
+        document.getElementById("rol-usuario").textContent = rol;
+
+        // Mostrar contenido según el rol
+        if (rol === "Comprador") {
+            document.getElementById("comprador-section").style.display = "block";
+
+            document.getElementById("form-propiedad").addEventListener("submit", function (e) {
+                e.preventDefault();
+                const titulo = document.getElementById("titulo").value;
+                const descripcion = document.getElementById("descripcion").value;
+                const imagen = document.getElementById("imagen").value;
+
+                fetch("http://localhost:3000/subir-propiedad", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ titulo, descripcion, imagen, vendedor_email: email })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    alert(data.message);
+                    document.getElementById("form-propiedad").reset();
+                })
+                .catch(err => {
+                    console.error("Error al subir propiedad:", err);
+                    alert("Error al subir propiedad");
+                });
+            });
+
+        } else if (rol === "Vendedor") {
+            document.getElementById("vendedor-section").style.display = "block";
+            cargarPropiedades();
+        }
+    });
+
+    function cargarPropiedades() {
+        fetch("http://localhost:3000/propiedades")
+            .then(res => res.json())
+            .then(data => {
+                const lista = document.getElementById("lista-propiedades");
+                lista.innerHTML = "";
+                data.forEach(p => {
+                    const div = document.createElement("div");
+                    div.innerHTML = `
+                        <h3>${p.titulo}</h3>
+                        <p>${p.descripcion}</p>
+                        <img src="${p.imagen_url}" width="200">
+                        <hr>
+                    `;
+                    lista.appendChild(div);
+                });
+            })
+            .catch(err => {
+                console.error("Error al cargar propiedades:", err);
+            });
+    }
+    </script>
 </body>
 </html>
