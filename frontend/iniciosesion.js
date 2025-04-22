@@ -15,9 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(result => {
             if (result.success) {
                 // Guardar datos en localStorage
+                localStorage.setItem("id", result.id); // 👈 nuevo
                 localStorage.setItem("rol", result.rol);
                 localStorage.setItem("nombre", result.nombre);
-                localStorage.setItem("email", email);
+                localStorage.setItem("email", email); // puedes conservarlo si lo necesitas
 
                 window.location.href = "spacerent.html"; // Redirige a Space Rent
             } else {
