@@ -2,111 +2,218 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Space Rent</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <title>SpaceRent | Panel</title>
+  <link href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
+    .propiedad-card {
+  background-color: #2c2c2c;
+  border: 1px solid #444;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  color: #fff;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  transition: transform 0.3s;
+}
+.propiedad-card:hover {
+  transform: scale(1.02);
+}
+.propiedad-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+#lista-propiedades {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+    /* (todo tu CSS igual que lo pusiste) */
+
     * {
       box-sizing: border-box;
-    }
-
-    body {
       margin: 0;
-      padding: 40px;
+      padding: 0;
+    }
+    body {
       font-family: 'Poppins', sans-serif;
-      background-color: #121212;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
       color: #f1f1f1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background-color: #1c1c1c;
+      padding: 20px 40px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header h1 {
+      color: #db241b;
+      font-size: 28px;
+    }
+    main {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex: 1;
+      width: 100%;
     }
 
-    h2, h3 {
-      color: #00bcd4;
+    /* NUEVO ESTILO PARA EL BOTÓN DE VER PERFIL */
+    #ver-perfil-btn {
+      background-color: #db241b;
+      border: none;
+      color: rgb(189, 18, 18);
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin: 30px auto 50px auto;
+      display: block;
+    }
+    #ver-perfil-btn:hover {
+      background-color: #a81d15;
     }
 
+ 
+    footer {
+      background-color: #000000;
+      color: white;
+      padding: 50px 20px;
+      margin-top: 40px;
+    }
+    footer h4 {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    footer p {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    footer .social-icons a {
+      color: white;
+      font-size: 22px;
+      margin-right: 10px;
+      border: 1px solid red;
+      border-radius: 50%;
+      padding: 8px;
+      display: inline-block;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    footer .social-icons a:hover {
+      background-color: red;
+      color: #fff;
+    }
+    @media (max-width: 600px) {
+      main {
+        padding: 20px;
+      }
+      footer {
+        text-align: center;
+      }
+      footer div {
+        flex-direction: column;
+      }
+    }
+    form {
+      background-color: #1f1f1f;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(219, 36, 27, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     input, textarea, button {
       width: 100%;
-      max-width: 400px;
-      padding: 12px;
-      margin-bottom: 12px;
+      max-width: 500px;
+      margin-bottom: 15px;
+      padding: 12px 15px;
       border-radius: 8px;
       border: none;
       font-size: 16px;
-      font-family: inherit;
-    }
-
-    input, textarea {
-      background-color: #1f1f1f;
+      background-color: #2c2c2c;
       color: #fff;
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 80px;
-    }
-
-    button {
-      background: linear-gradient(135deg, #00bcd4, #2196f3);
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
       transition: 0.3s;
     }
-
+    input:focus, textarea:focus {
+      background-color: #333;
+      border: 1px solid #db241b;
+      outline: none;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    button {
+      background-color: #db241b;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
     button:hover {
-      opacity: 0.9;
+      background-color: #a81d15;
     }
-
-    #lista-propiedades > div {
-      background-color: #1e1e1e;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    }
-
-    img {
-      border-radius: 10px;
-      margin-top: 10px;
-      max-width: 100%;
-    }
-
-    #info-usuario {
-      margin-bottom: 30px;
-      padding: 20px;
-      background-color: #1f1f1f;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    }
-
-    form {
-      margin-top: 20px;
-    }
-
-    hr {
-      border: 1px solid #333;
-    }
-
-    @media (max-width: 600px) {
-      body {
-        padding: 20px;
-      }
-    }
+    /* y así sucesivamente... */
   </style>
 </head>
+
 <body>
 
-  <!-- Mostrar nombre y rol del usuario -->
-  <div id="info-usuario">
-    <h2 id="nombre-usuario">Hola, Usuario</h2>
-    <p>Tu rol es: <span id="rol-usuario">desconocido</span></p>
+  <header>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h1>SpaceRent</h1>
+      <div id="perfil-boton" style="background-color: #333; color: #fff; padding: 10px 20px; cursor: pointer; border-radius: 5px;">
+        Mi Perfil
+      </div>
+    </div>
+  </header>
+  
+
+<main>
+
+  
+  
+
+  <!-- Botón pequeño "Mi Perfil" arriba a la derecha -->
+  <div id="perfil-boton" style="position: fixed; top: 20px; right: 20px; background-color: #333; color: #fff; padding: 10px 20px; cursor: pointer; border-radius: 5px;">
+    Mi Perfil
   </div>
+
+  <!-- Sección de Perfil del Usuario (oculta inicialmente) -->
+  <section id="perfil-section" style="display: none; position: fixed; top: 100px; right: 60px; background-color: #ad5656; border: 1px solid #ddd; padding: 10px; width: 250px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); border-radius: 5px;">
+    <h3>Mi Perfil</h3>
+    <form id="form-perfil" enctype="multipart/form-data">
+      <div>
+        <label for="nombre-perfil">Nombre:</label>
+        <input type="text" id="nombre-perfil" placeholder="Nombre" required>
+      </div>
+      <div>
+        <label for="email-perfil">Correo Electrónico:</label>
+        <input type="email" id="email-perfil" placeholder="Correo Electrónico" required>
+      </div>
+      <button type="submit">Actualizar Perfil</button>
+    </form>
+  </section>
 
   <!-- Sección para COMPRADOR -->
-  <div id="comprador-section" style="display: none;">
+  <section id="comprador-section" style="display: none;">
     <h3>Propiedades disponibles</h3>
     <div id="lista-propiedades"></div>
-  </div>
+  </section>
 
   <!-- Sección para VENDEDOR -->
-  <div id="vendedor-section" style="display: none;">
+  <section id="vendedor-section" style="display: none;">
     <h3>Sube tu propiedad</h3>
     <form id="form-propiedad" enctype="multipart/form-data">
       <input type="text" id="titulo" placeholder="Título" required>
@@ -116,80 +223,146 @@
       <input type="file" id="imagen" accept="image/*" required>
       <button type="submit">Subir propiedad</button>
     </form>
+  </section>
+
+</main>
+
+<footer>
+  <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;">
+    <div style="flex: 1 1 200px; margin-bottom: 20px;">
+      <img src="images/logo 1.png" alt="SpaceRent Logo" style="width: 150px;">
+    </div>
+    <div style="flex: 2 1 600px; display: flex; justify-content: space-around; flex-wrap: wrap;">
+      <div>
+        <h4>PARTICIPANTES</h4>
+        <p>Kevin Viasus</p>
+        <p>Maicol Roncancio</p>
+        <p>Paula Arevalo</p>
+        <p>Duvan Morales</p>
+      </div>
+      <div>
+        <h4>OCUPACIÓN</h4>
+        <p>Estudiante</p>
+        <p>Estudiante</p>
+        <p>Estudiante</p>
+        <p>Estudiante</p>
+      </div>
+      <div>
+        <h4>ROL</h4>
+        <p>Bases de datos</p>
+        <p>Programador</p>
+        <p>Diseñador</p>
+        <p>Scrum Master</p>
+      </div>
+      <div>
+        <h4>REDES SOCIALES</h4>
+        <div class="social-icons">
+          <a href="#"><i class="social"> <img src="images/s1.svg" alt=""></i></a>
+          <a href="#"><i class="social"> <img src="images/s2.svg" alt=""></i></a>
+          <a href="#"><i class="social"> <img src="images/s3.svg" alt=""></i></a>
+        </div>
+      </div>
+    </div>
   </div>
+  
+</footer>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const rol = localStorage.getItem("rol") || "desconocido";
-      const nombre = localStorage.getItem("nombre") || "Usuario";
-      const id_vendedor = localStorage.getItem("id") || "";
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const rol = localStorage.getItem("rol") || "desconocido";
+    const nombre = localStorage.getItem("nombre") || "Usuario";
+    const email = localStorage.getItem("email") || "";
+    const id_vendedor = localStorage.getItem("id") || "";
 
-      document.getElementById("nombre-usuario").textContent = `Hola, ${nombre}`;
-      document.getElementById("rol-usuario").textContent = rol;
+    // Mostrar la sección de perfil si corresponde
+    if (rol === "Comprador" || rol === "Vendedor") {
+      document.getElementById("nombre-perfil").value = nombre;
+      document.getElementById("email-perfil").value = email;
+    }
 
-      if (rol === "Comprador") {
-        document.getElementById("comprador-section").style.display = "block";
-        cargarPropiedades();
-      } else if (rol === "Vendedor") {
-        document.getElementById("vendedor-section").style.display = "block";
-
-        document.getElementById("form-propiedad").addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          const titulo = document.getElementById("titulo").value;
-          const descripcion = document.getElementById("descripcion").value;
-          const direccion = document.getElementById("direccion").value;
-          const precio = document.getElementById("precio").value;
-          const imagen = document.getElementById("imagen").files[0];
-
-          const formData = new FormData();
-          formData.append("titulo", titulo);
-          formData.append("descripcion", descripcion);
-          formData.append("direccion", direccion);
-          formData.append("precio", precio);
-          formData.append("imagen", imagen);
-          formData.append("id_vendedor", id_vendedor);
-
-          fetch("http://localhost:3000/subir-propiedad", {
-            method: "POST",
-            body: formData
-          })
-            .then(res => res.json())
-            .then(data => {
-              alert(data.message);
-              document.getElementById("form-propiedad").reset();
-              cargarPropiedades();
-            })
-            .catch(err => {
-              console.error("❌ Error al subir propiedad:", err);
-              alert("❌ Error al subir propiedad");
-            });
-        });
-      }
+    // Evento para actualizar perfil
+    document.getElementById("form-perfil").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const nombrePerfil = document.getElementById("nombre-perfil").value;
+      const emailPerfil = document.getElementById("email-perfil").value;
+      localStorage.setItem("nombre", nombrePerfil);
+      localStorage.setItem("email", emailPerfil);
+      alert("Perfil actualizado");
     });
 
-    function cargarPropiedades() {
-      fetch("http://localhost:3000/propiedades")
-        .then(res => res.json())
-        .then(data => {
-          const lista = document.getElementById("lista-propiedades");
-          lista.innerHTML = "";
-          data.forEach(p => {
-            const div = document.createElement("div");
-            div.innerHTML = `
-              <h3>${p.titulo}</h3>
-              <p>${p.descripcion}</p>
-              <p><strong>Dirección:</strong> ${p.direccion}</p>
-              <p><strong>Precio:</strong> $${p.precio}</p>
-              <img src="${p.imagen_url}" alt="Imagen propiedad">
-            `;
-            lista.appendChild(div);
-          });
-        })
-        .catch(err => {
-          console.error("❌ Error al cargar propiedades:", err);
-        });
+    // Evento para mostrar/ocultar la sección perfil (tanto en botón de arriba como en "Ver Perfil")
+    function togglePerfil() {
+      const perfilSection = document.getElementById("perfil-section");
+      perfilSection.style.display = (perfilSection.style.display === "none" || perfilSection.style.display === "") ? "block" : "none";
     }
-  </script>
+    document.getElementById("perfil-boton").addEventListener("click", togglePerfil);
+    
+
+    // Mostrar secciones según el rol
+    if (rol === "Comprador") {
+      document.getElementById("comprador-section").style.display = "block";
+      cargarPropiedades();
+    } else if (rol === "Vendedor") {
+      document.getElementById("vendedor-section").style.display = "block";
+
+      document.getElementById("form-propiedad").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const id_vendedor = localStorage.getItem("id"); // 👈 aquí dentro del submit
+        const titulo = document.getElementById("titulo").value;
+        const descripcion = document.getElementById("descripcion").value;
+        const direccion = document.getElementById("direccion").value;
+        const precio = document.getElementById("precio").value;
+        const imagen = document.getElementById("imagen").files[0];
+
+        const formData = new FormData();
+        formData.append("titulo", titulo);
+        formData.append("descripcion", descripcion);
+        formData.append("direccion", direccion);
+        formData.append("precio", precio);
+        formData.append("imagen", imagen);
+        formData.append("id_vendedor", id_vendedor); 
+
+        fetch("http://localhost:3000/subir-propiedad", {
+          method: "POST",
+          body: formData
+        })
+          .then(res => res.json())
+          .then(data => {
+            alert(data.message);
+            cargarPropiedades();
+          })
+          .catch(err => {
+            console.error("❌ Error al subir propiedad:", err);
+            alert("❌ Error al subir propiedad");
+          });
+      });
+    }
+  });
+
+  function cargarPropiedades() {
+    fetch("http://localhost:3000/propiedades")
+      .then(res => res.json())
+      .then(data => {
+        const lista = document.getElementById("lista-propiedades");
+        lista.innerHTML = "";
+        data.forEach(p => {
+          const div = document.createElement("div");
+          div.className = "propiedad-card";
+          div.innerHTML = `
+            <h3>${p.titulo}</h3>
+            <p>${p.descripcion}</p>
+            <p><strong>Dirección:</strong> ${p.direccion}</p>
+            <p><strong>Precio:</strong> $${p.precio}</p>
+            <img src="${p.imagen_url}" alt="Imagen de la propiedad">
+          `;
+          lista.appendChild(div);
+        });
+      })
+      .catch(err => {
+        console.error("❌ Error al cargar propiedades:", err);
+      });
+  }
+</script>
+
 </body>
 </html>
