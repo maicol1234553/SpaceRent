@@ -6,6 +6,33 @@
   <link href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
+    .btn-info {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .btn-info:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+
+  .propiedad-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 16px;
+    margin: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    background-color: #fdfdfd;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
     .propiedad-card {
   background-color: #2c2c2c;
   border: 1px solid #444;
@@ -207,9 +234,9 @@
   </section>
 
   <!-- Sección para COMPRADOR -->
-  <section id="comprador-section" style="display: none;">
-    <h3>Propiedades disponibles</h3>
-    <div id="lista-propiedades"></div>
+  <section id="comprador-section" style="display: none; text-align: center;">
+    <h3 style="margin-bottom: 30px;">Propiedades disponibles</h3>
+    <div id="lista-propiedades" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;"></div>
   </section>
 
   <!-- Sección para VENDEDOR -->
@@ -257,9 +284,9 @@
       <div>
         <h4>REDES SOCIALES</h4>
         <div class="social-icons">
-          <a href="#"><i class="social"> <img src="images/s1.svg" alt=""></i></a>
-          <a href="#"><i class="social"> <img src="images/s2.svg" alt=""></i></a>
-          <a href="#"><i class="social"> <img src="images/s3.svg" alt=""></i></a>
+          <a href="https://www.instagram.com/spacerent_oficial?igsh=ZWl6amhpeng2MjJl"><i class="social"> <img src="images/s1.svg" alt=""></i></a>
+          <a href="https://www.instagram.com/spacerent_oficial?igsh=ZWl6amhpeng2MjJl"><i class="social"> <img src="images/s2.svg" alt=""></i></a>
+          <a href="https://www.instagram.com/spacerent_oficial?igsh=ZWl6amhpeng2MjJl"><i class="social"> <img src="images/s3.svg" alt=""></i></a>
         </div>
       </div>
     </div>
@@ -340,28 +367,46 @@
   });
 
   function cargarPropiedades() {
-    fetch("http://localhost:3000/propiedades")
-      .then(res => res.json())
-      .then(data => {
-        const lista = document.getElementById("lista-propiedades");
-        lista.innerHTML = "";
-        data.forEach(p => {
-          const div = document.createElement("div");
-          div.className = "propiedad-card";
-          div.innerHTML = `
-            <h3>${p.titulo}</h3>
-            <p>${p.descripcion}</p>
-            <p><strong>Dirección:</strong> ${p.direccion}</p>
-            <p><strong>Precio:</strong> $${p.precio}</p>
-            <img src="${p.imagen_url}" alt="Imagen de la propiedad">
-          `;
-          lista.appendChild(div);
-        });
-      })
-      .catch(err => {
-        console.error("❌ Error al cargar propiedades:", err);
+  fetch("http://localhost:3000/propiedades")
+    .then(res => res.json())
+    .then(data => {
+      console.log("Datos de propiedades:", data);  // Asegúrate de que los datos son correctos
+      const lista = document.getElementById("lista-propiedades");
+      lista.innerHTML = "";  // Limpiar la lista antes de agregar nuevas propiedades
+      data.forEach(p => {
+        const div = document.createElement("div");
+        div.className = "propiedad-card";
+        div.innerHTML = `
+          <h3>${p.titulo}</h3>
+          <p>${p.descripcion}</p>
+          <p><strong>Dirección:</strong> ${p.direccion}</p>
+          <p><strong>Precio:</strong> $${p.precio}</p>
+          <img src="http://localhost:3000${p.imagen_url}" alt="Imagen de la propiedad" style="width: 100%; border-radius: 8px; margin: 10px 0;">
+          <button class="btn-info" onclick="mostrarInformacion(${p.id}, event)">Más información</button>
+
+
+        `;
+        lista.appendChild(div);
       });
-  }
+    })
+    .catch(err => {
+      console.error("❌ Error al cargar propiedades:", err);
+    });
+}
+
+function mostrarInformacion(idPropiedad) {
+  fetch(`http://localhost:3000/propiedad/${idPropiedad}`)
+    .then(res => res.json())
+    .then(data => {
+      // 1) Guarda los datos en localStorage
+      localStorage.setItem('propiedadDetalle', JSON.stringify(data));
+      // 2) Redirige a detalle.html
+      window.location.href = 'detalle.html';
+    })
+    .catch(err => console.error("❌ Error al obtener detalles:", err));
+}
+
+
 </script>
 
 </body>

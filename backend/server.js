@@ -138,6 +138,21 @@ app.get("/propiedades", (req, res) => {
     res.json(results);
   });
 });
+app.get('/propiedad/:id', (req, res) => {
+  const id = req.params.id;
+  db.query('SELECT * FROM propiedades WHERE id = ?', [id], (err, results) => {
+    if (err) {
+      console.error("Error en la consulta:", err);
+      return res.status(500).json({ error: "Error en la consulta" });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Propiedad no encontrada" });
+    }
+    console.log('lero', results);
+    res.json(results[0]);
+  });
+});
+
 
 // Iniciar servidor
 app.listen(3000, () => {
