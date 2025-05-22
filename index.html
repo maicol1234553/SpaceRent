@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Santa Inés - Biblioteca Multimedia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Fredoka', sans-serif;
+      background: linear-gradient(to bottom right, #e3f2fd, #fce4ec);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    header {
+      background-color: #00695c;
+      color: white;
+      width: 100%;
+      padding: 20px 0;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    header img {
+      width: 70px;
+      vertical-align: middle;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    header h1 {
+      display: inline-block;
+      font-size: 30px;
+      vertical-align: middle;
+      margin-left: 10px;
+    }
+
+    section {
+      width: 90%;
+      max-width: 1100px;
+      margin-top: 30px;
+      background-color: #ffffffd6;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      backdrop-filter: blur(5px);
+    }
+
+    .titulo-materia {
+      background-color: #4db6ac;
+      color: white;
+      font-size: 20px;
+      padding: 12px 20px;
+      margin-bottom: 10px;
+      border: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: background 0.3s;
+    }
+
+    .titulo-materia:hover {
+      background-color: #00897b;
+    }
+
+    .contenido {
+      display: none;
+      padding: 15px;
+      animation: fade 0.5s ease-in-out;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: scaleY(0.95); }
+      to { opacity: 1; transform: scaleY(1); }
+    }
+
+    .archivo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .video {
+  width: 100%;       /* Para que el video use todo el ancho disponible del contenedor */
+  max-width: 800px;  /* Máximo ancho fijo para todos los videos */
+  height: 400px;     /* Altura fija para que todos tengan la misma altura */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+  object-fit: cover; /* Para que el video rellene el cuadro sin distorsionarse */
+}
+
+    .video:hover {
+      transform: scale(1.03);
+    }
+
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 15px;
+      color: #444;
+      padding: 20px;
+      border-top: 1px solid #ccc;
+      width: 100%;
+      background-color: #f1f8e9;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="images/Escudo Colegio.jpg" alt="Logo Escuela Santa Inés" />
+    <h1>Escuela Santa Inés - Biblioteca Multimedia</h1>
+  </header>
+
+  <section>
+    <!-- Botones por materia -->
+    <button class="titulo-materia" onclick="toggleContenido('ingles')">Inglés</button>
+    <div class="contenido" id="ingles">
+      <div class="archivo">
+        <video class="video" controls>
+          <source src="videos/ingles/1.mp4" type="video/mp4" />
+          
+        </video>
+        <video class="video" controls>
+          <source src="videos/ingles/2.mp4" type="video/mp4" />
+          
+        </video>
+        </video>
+        <video class="video" controls>
+          <source src="videos/ingles/3.mp4" type="video/mp4" />
+          
+        </video>
+        </video>
+        <video class="video" controls>
+          <source src="videos/ingles/4.mp4" type="video/mp4" />
+          
+        </video>
+        </video>
+        <video class="video" controls>
+          <source src="videos/ingles/5.mp4" type="video/mp4" />
+          
+        </video>
+        </video>
+        <video class="video" controls>
+          <source src="videos/ingles/6.mp4" type="video/mp4" />
+          
+        </video>
+        
+
+      </div>
+    </div>
+
+    <button class="titulo-materia" onclick="toggleContenido('matematicas')">Matemáticas</button>
+    <div class="contenido" id="matematicas">
+      <div class="archivo">
+        <video class="video" controls>
+          <source src="videos/Matematicas/1.mp4" type="video/mp4" />
+        </video>
+        <video class="video" controls>
+          <source src="videos/Matematicas/2.mp4" type="video/mp4" />
+          
+        </video>
+        </video>
+        <video class="video" controls>
+          <source src="videos/Matematicas/3.mp4" type="video/mp4" />
+          
+        </video>
+        </video>
+        <video class="video" controls>
+          <source src="videos/Matematicas/4.mp4" type="video/mp4" />
+          
+        </video>
+        </video>
+        <video class="video" controls>
+          <source src="videos/Matematicas/5.mp4" type="video/mp4" />
+          
+        </video>
+        </video>
+        <video class="video" controls>
+          <source src="videos/Matematicas/6.mp4" type="video/mp4" />
+          
+        </video>
+        
+
+      </div>
+
+        
+      </div>
+    </div>
+
+    <button class="titulo-materia" onclick="toggleContenido('naturales')">Ciencias Naturales</button>
+    <div class="contenido" id="naturales">
+      <div class="archivo">
+        <video class="video" controls>
+          <source src="videos/Ciencas naturales/1.mp4" type="video/mp4" />
+        </video>
+
+        <video class="video" controls>
+          <source src="videos/Ciencas naturales/2.mp4" type="video/mp4" />
+          
+        </video>
+        </video>
+        <video class="video" controls>
+          <source src="videos/Ciencas naturales/3.mp4" type="video/mp4" />
+          
+        </video>
+        </video>
+        <video class="video" controls>
+          <source src="videos/Ciencas naturales/4.mp4" type="video/mp4" />
+          
+        </video>
+        </video>
+        <video class="video" controls>
+          <source src="videos/Ciencas naturales/5.mp4" type="video/mp4" />
+          
+        </video>
+        </video>
+        <video class="video" controls>
+          <source src="videos/Ciencas naturales/6.mp4" type="video/mp4" />
+          
+        </video>
+        
+
+      </div>
+      </div>
+    </div>
+
+    <button class="titulo-materia" onclick="toggleContenido('sociales')">Ciencias Sociales</button>
+    <div class="contenido" id="sociales">
+      <div class="archivo">
+        <video class="video" controls>
+          <source src="videos/Ciencias sociales/1.mp4" type="video/mp4" />
+        </video>
+        <video class="video" controls>
+          <source src="videos/Ciencias sociales/2.mp4" type="video/mp4" />
+          
+        </video>
+        </video>
+        <video class="video" controls>
+          <source src="videos/Ciencias sociales/3.mp4" type="video/mp4" />
+          
+        </video>
+        </video>
+        <video class="video" controls>
+          <source src="videos/Ciencias sociales/4.mp4" type="video/mp4" />
+          
+        </video>
+        </video>
+        <video class="video" controls>
+          <source src="videos/Ciencias sociales/5.mp4" type="video/mp4" />
+          
+        </video>
+        </video>
+        <video class="video" controls>
+          <source src="videos/Ciencias sociales/6.mp4" type="video/mp4" />
+          
+        </video>
+        
+
+      </div>
+      </div>
+    </div>
+
+    <button class="titulo-materia" onclick="toggleContenido('informatica')">Informática</button>
+    <div class="contenido" id="informatica">
+      <div class="archivo">
+        <video class="video" controls>
+          <source src="videos/informatica/1.mp4" type="video/mp4" />
+        </video>
+
+        <video class="video" controls>
+          <source src="videos/informatica/2.mp4" type="video/mp4" />
+          
+        </video>
+        </video>
+        <video class="video" controls>
+          <source src="videos/informatica/3.mp4" type="video/mp4" />
+          
+        </video>
+        </video>
+        <video class="video" controls>
+          <source src="videos/informatica/4.mp4" type="video/mp4" />
+          
+        </video>
+        </video>
+        <video class="video" controls>
+          <source src="videos/informatica/5.mp4" type="video/mp4" />
+          
+        </video>
+        </video>
+        <video class="video" controls>
+          <source src="videos/informatica/6.mp4" type="video/mp4" />
+          
+        </video>
+        
+
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Proyecto elaborado por <strong>Red Fusalibre</strong> para la <strong>Escuela Santa Inés</strong><br />
+    © 2025 - Todos los derechos reservados.
+  </footer>
+
+  <script>
+    function toggleContenido(id) {
+      const contenedor = document.getElementById(id);
+      contenedor.style.display = contenedor.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+</body>
+</html>
+
